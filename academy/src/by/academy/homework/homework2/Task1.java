@@ -25,10 +25,10 @@ public class Task1 {
 				System.out.println(answer + false);
 				return;
 			}
-			strBuilder.replace(position, (position + 1), " ");
+			strBuilder.replace(position, (position + 1), "");
 		}
 		
-		if (strBuilder.toString().isBlank()) {
+		if (strBuilder.toString().isEmpty()) {
 			System.out.println(answer + true);
 		}
 	}
