@@ -11,7 +11,7 @@ public class App {
 
 	private Deal[] deals = new Deal[10];
 	private int dealCounter = 0;
-	private static final Scanner scan = new Scanner(System.in);
+	private static Scanner scan = new Scanner(System.in);
 	BelPhoneValidator belValidator = new BelPhoneValidator();
 	EmailValidator emailValidator = new EmailValidator();
 
@@ -25,7 +25,7 @@ public class App {
 	}
 
 	public void dealsMenu() throws ParseException {
-
+		Scanner scan = new Scanner(System.in);
 		do {
 			System.out.println("What are your commands master?" + "\n1.Create new deal" + "\n2.Edit\\view existing deal"
 					+ "\n3.Exit");
@@ -34,6 +34,10 @@ public class App {
 				createNewDeal();
 				break;
 			case 2:
+				if (dealCounter == 0) {
+					System.out.println("No deals in sight Captain!");
+					break;
+				}
 				deals[chooseDeal()].dealMenu();
 				break;
 			case 3:
@@ -83,24 +87,24 @@ public class App {
 //Creates seller 
 	private void createSeller() {
 		System.out.println("Lets start with seller, what is his name...");
-		deals[dealCounter].getSeller().setName(scan.next());
+		deals[dealCounter].getSeller().setName(scan.next());//set name
 		System.out.println("What about his wallet, how much money does he have?");
-		deals[dealCounter].getSeller().setMoney(scan.nextDouble());
+		deals[dealCounter].getSeller().setMoney(scan.nextDouble());//set money
 
 		do {
 			System.out.println("Lets add his phone number");
-			deals[dealCounter].getSeller().setTelephone(scan.next());
+			deals[dealCounter].getSeller().setTelephone(scan.next());//set phone num
 		} while (!belValidator.validate(deals[dealCounter].getSeller().getTelephone()));
 		do {
 			System.out.println("And email");
-			deals[dealCounter].getSeller().setEmail(scan.next());
+			deals[dealCounter].getSeller().setEmail(scan.next());//set email
 		} while (!emailValidator.validate(deals[dealCounter].getSeller().getEmail()));
 
 		do {
 			System.out.println("Set his Bday in dd//mm//yyyy or dd-mm-yyyy format");
-			deals[dealCounter].getSeller().setDateOfBirth(scan.next());
-		} while (!DateValidator.getDateDash(deals[dealCounter].getSeller().getDateOfBirth())
-				|| !DateValidator.getDateSlash(deals[dealCounter].getSeller().getDateOfBirth()));
+			deals[dealCounter].getSeller().setDateOfBirth(scan.next());//set date od Bday
+		} while (!DateValidator.getDateDash(deals[dealCounter].getSeller().getDateOfBirth()) //validation of dates 
+				&& !DateValidator.getDateSlash(deals[dealCounter].getSeller().getDateOfBirth()));
 	}
 
 // Expends array, used automaticly in addProduct
@@ -120,17 +124,17 @@ public class App {
 		deals[dealCounter].getBuyer().setMoney(scan.nextDouble());// set Money
 		do {
 			System.out.println("Lets add his phone number");
-			deals[dealCounter].getBuyer().setTelephone(scan.next());
+			deals[dealCounter].getBuyer().setTelephone(scan.next());//set Phone num
 		} while (!belValidator.validate(deals[dealCounter].getBuyer().getTelephone()));
 		do {
 			System.out.println("And email");
-			deals[dealCounter].getBuyer().setEmail(scan.next());
+			deals[dealCounter].getBuyer().setEmail(scan.next());//set Email
 		} while (!emailValidator.validate(deals[dealCounter].getBuyer().getEmail()));
 		do {
 			System.out.println("Set his Bday in dd//mm//yyyy or dd-mm-yyyy format");
-			deals[dealCounter].getBuyer().setDateOfBirth(scan.next());
-		} while (!DateValidator.getDateDash(deals[dealCounter].getBuyer().getDateOfBirth())
-				|| !DateValidator.getDateSlash(deals[dealCounter].getBuyer().getDateOfBirth()));
+			deals[dealCounter].getBuyer().setDateOfBirth(scan.next());//set date of Bday
+		} while (!DateValidator.getDateDash(deals[dealCounter].getBuyer().getDateOfBirth())//validation of dates
+				&& !DateValidator.getDateSlash(deals[dealCounter].getBuyer().getDateOfBirth()));
 	}
 
 //Method that converts user input to index of deal in  array
