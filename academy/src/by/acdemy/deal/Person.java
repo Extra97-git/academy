@@ -6,6 +6,7 @@ public class Person {
 	private String name;
 	private String telephone;
 	private String email;
+	private String dateOfBirth;
 
 	public Person(Double money, String name, String telephone, String email) {
 		super();
@@ -50,4 +51,14 @@ public class Person {
 	public String getEmail() {
 		return email;
 	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+	
+	
 }
