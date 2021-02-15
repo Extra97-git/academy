@@ -45,7 +45,7 @@ public class App {
 		} while (Deal.anotherAction());
 		scan.close();
 	}
-
+// Menu that calls private methods from class to create new deal
 	private void createNewDeal() throws ParseException{
 		System.out.println("Okay, lets create new deal");
 		if(dealCounter == deals.length) {
@@ -58,7 +58,7 @@ public class App {
 		dealCounter++;
 
 	}
-	
+//Time validation + formatting that feels totaly like a hack
 	private void setDealDate() throws ParseException {
 		System.out.println("Add date in dd/mm/yyyy or dd-mm-yyyy format");
 		String date = scan.next();
@@ -74,7 +74,7 @@ public class App {
 		}
 			
 	}
-
+//Creates seller 
 	private void createSeller() {
 		System.out.println("Lets start with seller, what is his name...");
 		deals[dealCounter].getSeller().setName(scan.next());
@@ -90,7 +90,7 @@ public class App {
 			deals[dealCounter].getSeller().setEmail(scan.next());
 		} while (!emailValidator.validate(deals[dealCounter].getSeller().getEmail()));
 	}
-	
+// Expends array, used automaticly in addProduct
 	private void expandArray() {
 		Deal[] temp = new Deal[deals.length * 2 + 1];
 		for(int i = 0; i < deals.length; i++) {
@@ -98,12 +98,12 @@ public class App {
 		}
 		deals = temp;
 	}
-
+//Creates Buyer
 	private void createBuyer() {
 		System.out.println("Okay buyer this time, what is his name...");
-		deals[dealCounter].getBuyer().setName(scan.next());
+		deals[dealCounter].getBuyer().setName(scan.next());//set Name 
 		System.out.println("What about his wallet, how much money does he have?");
-		deals[dealCounter].getBuyer().setMoney(scan.nextDouble());
+		deals[dealCounter].getBuyer().setMoney(scan.nextDouble());// set Money
 		do {
 			System.out.println("Lets add his phone number");
 			deals[dealCounter].getBuyer().setTelephone(scan.next());
@@ -113,7 +113,7 @@ public class App {
 			deals[dealCounter].getBuyer().setEmail(scan.next());
 		} while (!emailValidator.validate(deals[dealCounter].getBuyer().getEmail()));
 	}
-
+//Method that converts user input to index of deal in  array
 	private int chooseDeal() {
 		System.out.println("Choose deal from 1 to " + dealCounter);
 		return (scan.nextInt() - 1);

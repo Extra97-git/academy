@@ -2,6 +2,7 @@ package by.acdemy.deal;
 
 import java.util.Scanner;
 import java.time.LocalDate;
+
 public class Deal {
 	private Person buyer = new Person();
 	private Person seller = new Person();
@@ -10,14 +11,12 @@ public class Deal {
 	private int trueArrLength = 0;
 	private boolean isDealExecuted = false;
 	public LocalDate deadline = LocalDate.now().plusDays(10);
-	
-	
 
 	private final static Scanner scan = new Scanner(System.in);
-
+	// Template for root Menu
 	private final static String dealMenu = "What is your orders master(insert number)" + "\n1.View Bill."
 			+ "\n2.Add Products" + "\n3.Remove Products" + "\n4.Execute Deal" + "\n5.View product list" + "\n6.Exit";
-
+	// Template for
 	private final static String addProductMenu = "Which product type my master wishes to add" + "\n1.Wine"
 			+ "\n2.Cheese" + "\n3.Meat";
 
@@ -65,9 +64,10 @@ public class Deal {
 	}
 
 	public void setDate(String date) {
-		
+		this.date = date;
 	}
 
+//"Root" menu that gives acsess to other menus
 	public void dealMenu() {
 		do {
 			System.out.println(dealMenu);
@@ -76,11 +76,19 @@ public class Deal {
 				printBill();
 				break;
 			case 2:
-				addProductMenu();
+				if (!isDealExecuted) {
+					addProductMenu();
+				} else {
+					System.out.println("Deal is executed");
+				}
 				break;
 			case 3:
-				System.out.println("Insert name of product");
-				removeProduct(scan.nextLine());
+				if (!isDealExecuted) {
+					System.out.println("Insert name of product");
+					removeProduct(scan.nextLine());
+				} else {
+					System.out.println("Deal is executed");
+				}
 				break;
 			case 4:
 				deal();
@@ -99,60 +107,64 @@ public class Deal {
 
 	}
 
+//Menu that allows to add product (first we fill in fields for super, which is Product, then for inhereting classes(Wine, Meat, Cheese)
 	public void addProductMenu() {
 		System.out.println("#################\n" + addProductMenu);
 		int answer = scan.nextInt();
-		
+		// Product construction
 		System.out.println(Product.templateProduct[0]);
 		String name = scan.next();
-		
+
 		System.out.println(Product.templateProduct[1]);
 		Double price = scan.nextDouble();
-		
+
 		System.out.println(Product.templateProduct[2]);
 		String manufacturer = scan.next();
-		
+
 		System.out.println(Product.templateProduct[3]);
 		int quantity = scan.nextInt();
-		
+
 		switch (answer) {
 		case 1:
+			// Wine construction
 			Wine wine = new Wine(name, price, manufacturer, quantity);
 			System.out.println(Wine.templateWine[0]);
 			wine.setCountry(scan.next());
-			
+
 			System.out.println(Wine.templateWine[1]);
 			wine.setColour(scan.next());
-			
+
 			System.out.println(Wine.templateWine[2]);
 			wine.setAge(scan.nextInt());
-			
+
 			System.out.println(Wine.templateWine[3]);
 			wine.setVolume(scan.nextInt());
-			
+
 			addProduct(wine);
 			break;
 		case 2:
+			// Cheese construction
 			Cheese cheese = new Cheese(name, price, manufacturer, quantity);
 			System.out.println(Cheese.templateCheese[0]);
 			cheese.setType(scan.next());
-			
+
 			System.out.println(Cheese.templateCheese[1]);
 			cheese.setAge(scan.nextInt());
-			
+
 			System.out.println(Cheese.templateCheese[2]);
 			cheese.setAmountOfHoles(scan.nextInt());
-			
+
 			addProduct(cheese);
 			break;
 		case 3:
+			// Meat construction
 			Meat meat = new Meat(name, price, manufacturer, quantity);
 			System.out.println(Meat.templateProduct[0]);
 			meat.setAnimalSpecies(scan.next());
-			
+
 			System.out.println(Meat.templateProduct[1]);
 			meat.setBodyPart(scan.next());
-			
+
 			addProduct(meat);
 			break;
 		default:
@@ -162,6 +174,7 @@ public class Deal {
 
 	}
 
+	// Simple prints out toString of all products in Array
 	private void viewProducts() {
 		System.out.println("#################\n");
 		for (int i = 0; i < trueArrLength; i++) {
@@ -169,6 +182,8 @@ public class Deal {
 		}
 	}
 
+	// After completing action from root menu gives us options to either continue or
+	// quit
 	public static boolean anotherAction() {
 		System.out.println("#################\n" + anotherAction);
 		switch (scan.nextInt()) {
@@ -223,6 +238,7 @@ public class Deal {
 		return sum;
 	}
 
+	// Runs deal (transfers money)
 	private void deal() {
 		System.out.println("#################\n");
 		if (isDealExecuted) {
@@ -240,9 +256,10 @@ public class Deal {
 		}
 	}
 
+//gives us info about Deal in general(date, Product info, seller, buyer etc.)
 	private void printBill() {
 		System.out.println("#################\n");
-		
+
 		System.out.println(date);
 		System.out.println(
 				"Seller: " + seller.getName() + "  Tel: " + seller.getTelephone() + "  email: " + seller.getEmail());
