@@ -242,6 +242,8 @@ public class Deal {
 
 	private void printBill() {
 		System.out.println("#################\n");
+		
+		System.out.println(date);
 		System.out.println(
 				"Seller: " + seller.getName() + "  Tel: " + seller.getTelephone() + "  email: " + seller.getEmail());
 		System.out.println(

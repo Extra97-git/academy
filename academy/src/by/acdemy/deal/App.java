@@ -54,18 +54,19 @@ public class App {
 		deals[dealCounter] = new Deal();
 		createSeller();
 		createBuyer();
-		setDealDate(scan.next());
+		setDealDate();
 		dealCounter++;
 
 	}
 	
-	private void setDealDate(String date) throws ParseException {
+	private void setDealDate() throws ParseException {
 		System.out.println("Add date in dd/mm/yyyy or dd-mm-yyyy format");
-		if(DateValidator.getDateDash(date)) {
+		String date = scan.next();
+		if(DateValidator.getDateSlash(date)) {
 			Date dateTemp = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 			deals[dealCounter].setDate( "Day: " + dateTemp.getDay() + "\nMonth: " + dateTemp.getMonth() + "\nYear: " + dateTemp.getYear());
 			
-		} else if(DateValidator.getDateSlash(date)) {
+		} else if(DateValidator.getDateDash(date)) {
 			Date dateTemp = new SimpleDateFormat("dd-MM-yyyy").parse(date);
 			deals[dealCounter].setDate( "Day: " + dateTemp.getDay() + "\nMonth: " + dateTemp.getMonth() + "\nYear: " + dateTemp.getYear());
 		} else {
