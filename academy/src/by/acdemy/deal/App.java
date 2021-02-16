@@ -72,7 +72,7 @@ public class App {
 		if (DateValidator.getDateSlash(date)) {
 			Date dateTemp = new SimpleDateFormat("dd/MM/yyyy").parse(date);
 			deals[dealCounter].setDate(
-					"Day: " + dateTemp.getDay() + "\nMonth: " + dateTemp.getMonth() + "\nYear: " + dateTemp.getYear());
+					"Day: " + dateTemp.getDay() + "\nMonth: " + dateTemp.getMonth() + "\nYear: " + (1900 + dateTemp.getYear()));
 
 		} else if (DateValidator.getDateDash(date)) {
 			Date dateTemp = new SimpleDateFormat("dd-MM-yyyy").parse(date);
