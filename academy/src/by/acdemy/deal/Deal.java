@@ -16,7 +16,7 @@ public class Deal {
 	// Template for root Menu
 	private final static String dealMenu = "What is your orders master(insert number)" + "\n1.View Bill."
 			+ "\n2.Add Products" + "\n3.Remove Products" + "\n4.Execute Deal" + "\n5.View product list" + "\n6.Exit";
-	// Template for add Menu that ads products
+	// Template for add Menu that adds products
 	private final static String addProductMenu = "Which product type my master wishes to add" + "\n1.Wine"
 			+ "\n2.Cheese" + "\n3.Meat";
 
@@ -159,10 +159,10 @@ public class Deal {
 		case 3:
 			// Meat construction
 			Meat meat = new Meat(name, price, manufacturer, quantity);
-			System.out.println(Meat.templateProduct[0]);
+			System.out.println(Meat.templateMeat[0]);
 			meat.setAnimalSpecies(scan.next());
 
-			System.out.println(Meat.templateProduct[1]);
+			System.out.println(Meat.templateMeat[1]);
 			meat.setBodyPart(scan.next());
 
 			addProduct(meat);

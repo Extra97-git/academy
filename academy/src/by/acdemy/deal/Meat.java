@@ -3,7 +3,7 @@ package by.acdemy.deal;
 public class Meat extends Product{
 	private String animalSpecies;
 	private String bodyPart;
-	private static final String[] templateMeat = {"5. Add animal species", "6. Add body part"};
+	public static final String[] templateMeat = {"5. Add animal species", "6. Add body part"};
 	
 	public Meat(String name, Double price, String manufacturer, Integer quantity, String animalSpecies, String bodyPart) {
 		super(name, price, manufacturer, quantity);
