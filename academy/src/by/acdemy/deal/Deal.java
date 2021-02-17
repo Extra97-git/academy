@@ -12,7 +12,6 @@ public class Deal {
 	private boolean isDealExecuted = false;
 	public LocalDate deadline = LocalDate.now().plusDays(10);
 
-	private final static Scanner scan = new Scanner(System.in);
 	// Template for root Menu
 	private final static String dealMenu = "What is your orders master(insert number)" + "\n1.View Bill."
 			+ "\n2.Add Products" + "\n3.Remove Products" + "\n4.Execute Deal" + "\n5.View product list" + "\n6.Exit";
@@ -69,6 +68,7 @@ public class Deal {
 
 //"Root" menu that gives acsess to other menus
 	public void dealMenu() {
+		Scanner scan = new Scanner(System.in);
 		do {
 			System.out.println(dealMenu);
 			switch (scan.nextInt()) {
@@ -77,7 +77,7 @@ public class Deal {
 				break;
 			case 2:
 				if (!isDealExecuted) {
-					addProductMenu();
+					addProductMenu(scan);
 				} else {
 					System.out.println("Deal is executed");
 				}
@@ -85,7 +85,7 @@ public class Deal {
 			case 3:
 				if (!isDealExecuted) {
 					System.out.println("Insert name of product");
-					removeProduct(scan.nextLine());
+					removeProduct(scan.next());
 				} else {
 					System.out.println("Deal is executed");
 				}
@@ -97,18 +97,19 @@ public class Deal {
 				viewProducts();
 				break;
 			case 6:
+				scan.close();
 				return;
 			default:
 				System.out.println("Invalid input");
 				break;
 			}
-		} while (anotherAction());
+		} while (anotherAction(scan));
 		scan.close();
 
 	}
 
 //Menu that allows to add product (first we fill in fields for super, which is Product, then for inhereting classes(Wine, Meat, Cheese)
-	public void addProductMenu() {
+	public void addProductMenu(Scanner scan) {
 		System.out.println("#################\n" + addProductMenu);
 		int answer = scan.nextInt();
 		// Product construction
@@ -184,7 +185,7 @@ public class Deal {
 
 	// After completing action from root menu gives us options to either continue or
 	// quit
-	public static boolean anotherAction() {
+	public static boolean anotherAction(Scanner scan) {
 		System.out.println("#################\n" + anotherAction);
 		switch (scan.nextInt()) {
 		case 1:

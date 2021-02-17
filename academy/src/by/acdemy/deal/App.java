@@ -11,7 +11,7 @@ public class App {
 
 	private Deal[] deals = new Deal[10];
 	private int dealCounter = 0;
-	private static Scanner scan = new Scanner(System.in);
+	
 	BelPhoneValidator belValidator = new BelPhoneValidator();
 	EmailValidator emailValidator = new EmailValidator();
 
@@ -20,6 +20,7 @@ public class App {
 	}
 
 	public static void main(String[] args) throws ParseException {
+		System.out.println("Instead of space us _");
 		App appDemo = new App();
 		appDemo.dealsMenu();
 	}
@@ -31,42 +32,43 @@ public class App {
 					+ "\n3.Exit");
 			switch (scan.nextInt()) {
 			case 1:
-				createNewDeal();
+				createNewDeal(scan);
 				break;
 			case 2:
 				if (dealCounter == 0) {
 					System.out.println("No deals in sight Captain!");
 					break;
 				}
-				deals[chooseDeal()].dealMenu();
+				deals[chooseDeal(scan)].dealMenu();
 				break;
 			case 3:
+				scan.close();
 				return;
 			default:
 				System.out.println("Invalid input");
 				break;
 			}
-		} while (Deal.anotherAction());
+		} while (Deal.anotherAction(scan));
 		scan.close();
 	}
 
 // Menu that calls private methods from class to create new deal
-	private void createNewDeal() throws ParseException {
+	private void createNewDeal(Scanner scan) throws ParseException {
 		System.out.println("Okay, lets create new deal");
 		if (dealCounter == deals.length) {
 			expandArray();
 		}
 		deals[dealCounter] = new Deal();
-		createSeller();
-		createBuyer();
-		setDealDate();
+		createSeller(scan);
+		createBuyer(scan);
+		setDealDate(scan);
 		dealCounter++;
 
 	}
 
 //Time validation + formatting that feels totaly like a hack (i will remake it with Calendar later... probably...)
 //Откровенно говоря, я вообще не вьехал как работать с более современными форматами...
-	private void setDealDate() throws ParseException {
+	private void setDealDate(Scanner scan) throws ParseException {
 		System.out.println("Add date in dd/mm/yyyy or dd-mm-yyyy format");
 		String date = scan.next();
 		if (DateValidator.getDateSlash(date)) {
@@ -85,7 +87,7 @@ public class App {
 	}
 
 //Creates seller 
-	private void createSeller() {
+	private void createSeller(Scanner scan) {
 		System.out.println("Lets start with seller, what is his name...");
 		deals[dealCounter].getSeller().setName(scan.next());//set name
 		System.out.println("What about his wallet, how much money does he have?");
@@ -117,7 +119,7 @@ public class App {
 	}
 
 //Creates Buyer
-	private void createBuyer() {
+	private void createBuyer(Scanner scan) {
 		System.out.println("Okay buyer this time, what is his name...");
 		deals[dealCounter].getBuyer().setName(scan.next());// set Name
 		System.out.println("What about his wallet, how much money does he have?");
@@ -138,7 +140,7 @@ public class App {
 	}
 
 //Method that converts user input to index of deal in  array
-	private int chooseDeal() {
+	private int chooseDeal(Scanner scan) {
 		System.out.println("Choose deal from 1 to " + dealCounter);
 		return (scan.nextInt() - 1);
 	}
