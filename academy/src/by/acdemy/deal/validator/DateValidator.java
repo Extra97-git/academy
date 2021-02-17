@@ -8,16 +8,10 @@ public class DateValidator {
 
 
 	public static boolean getDateSlash(String str) {
-		if (paternSlash.matcher(str).find()) {
-			return true;
-		}
-		return false;
+		return paternSlash.matcher(str).find();
 	}
 
 	public static  boolean getDateDash(String str) {
-		if (paternDash.matcher(str).find()) {
-			return true;
-		}
-		return false;
+		return paternDash.matcher(str).find();
 	}
 }
