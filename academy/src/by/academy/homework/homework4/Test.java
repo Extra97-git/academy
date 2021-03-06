@@ -21,6 +21,9 @@ public class Test {
 		System.out.println(list.getLast());
 		System.out.println(list.removeByElment(10));
 		System.out.println(list.removeByElment(5));
+		System.out.println(list.getLast());
+		System.err.println(list.get(9));
+		System.err.println(list.get(10));
 		int i = 0;
 		while(list.get(i) != null) {
 			System.out.println(list.get(i));

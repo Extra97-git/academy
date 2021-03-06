@@ -29,7 +29,7 @@ public class MyArrayList<T> {
 
 	public T get(int index) {
 		if (index >= counter || index < 0) {
-			System.out.println("Index put of bounds");
+			System.out.println("Index out of bounds");
 			return null;
 		}
 		return array[index];
