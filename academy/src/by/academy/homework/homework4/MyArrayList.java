@@ -64,7 +64,7 @@ public class MyArrayList<T> {
 		return counter - 1;
 	}
 	
-	public boolean remove(int i) {
+	public boolean removeByIndex(int i) {
 		if( i >= 0 && i < counter) {
 			System.arraycopy(array, i + 1, array, i, counter - i- 1);
 			array[counter--] = null;
@@ -74,7 +74,7 @@ public class MyArrayList<T> {
 		
 	}
 	
-	public boolean remove(T obj) {
+	public boolean removeByElment(T obj) {
 		int index = 0;
 		for(int i = 0; i < counter; i++) {
 			if(array[i].equals(obj)) {
