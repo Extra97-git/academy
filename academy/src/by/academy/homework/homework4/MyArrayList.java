@@ -28,7 +28,7 @@ public class MyArrayList<T> {
 	}
 
 	public T get(int index) {
-		if(index >= counter || index <  0) {
+		if (index >= counter || index < 0) {
 			System.out.println("Index put of bounds");
 			return null;
 		}
@@ -63,21 +63,21 @@ public class MyArrayList<T> {
 
 		return counter - 1;
 	}
-	
+
 	public boolean removeByIndex(int i) {
-		if( i >= 0 && i < counter) {
-			System.arraycopy(array, i + 1, array, i, counter - i- 1);
+		if (i >= 0 && i < counter) {
+			System.arraycopy(array, i + 1, array, i, counter - i - 1);
 			array[counter--] = null;
 			return true;
 		}
 		return false;
-		
+
 	}
-	
+
 	public boolean removeByElment(T obj) {
 		int index = 0;
-		for(int i = 0; i < counter; i++) {
-			if(array[i].equals(obj)) {
+		for (int i = 0; i < counter; i++) {
+			if (array[i].equals(obj)) {
 				index = i;
 				System.arraycopy(array, index + 1, array, index, counter - index - 1);
 				array[counter--] = null;
@@ -86,6 +86,5 @@ public class MyArrayList<T> {
 		}
 		return false;
 	}
-	
-	
+
 }
