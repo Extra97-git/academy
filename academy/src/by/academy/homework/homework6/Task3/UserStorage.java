@@ -24,8 +24,12 @@ public class UserStorage {
 
 		for (User k : list) {
 			File userData = new File(folder, k.getName() + "_" + k.getSurname());
+			
 			try (ObjectOutputStream ous = new ObjectOutputStream(
 					new BufferedOutputStream(new FileOutputStream(userData)))) {
+				if(!userData.exists()) {
+					userData.createNewFile();
+				}
 				ous.writeObject(k);
 			} catch (IOException e) {
 				System.out.println(e.getStackTrace());
